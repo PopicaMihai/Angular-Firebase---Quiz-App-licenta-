@@ -1,0 +1,12 @@
+<div class="containerFlex">
+    <div *ngFor="let section of sections">
+        <a [routerLink]="section.name" routerLinkActive="active" (click)="returnCurrentSection(section)">
+            {{ section.name }}
+        </a>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
+<!-- <app-weeks [section]="currentSection"></app-weeks> -->
+

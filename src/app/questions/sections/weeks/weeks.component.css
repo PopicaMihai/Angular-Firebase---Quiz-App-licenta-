@@ -1,0 +1,48 @@
+button {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #4479BA;
+    color: #FFF;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+element.style {
+    background-color: red;
+}
+
+.button-active{
+    color:red;
+}
+
+.button-standard{
+    color: green;
+    }
+
+.containerFlexSections {
+    width: 15%;
+    padding-top: 20px;
+    margin-left: 45px;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerFlexQuestions {
+    width: 75%;
+    margin-top:30px;
+}
+
+.item {
+    margin-top:20px;
+}
+
+.active {
+    background-color: red;
+}

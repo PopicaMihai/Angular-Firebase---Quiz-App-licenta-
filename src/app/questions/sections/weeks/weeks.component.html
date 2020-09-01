@@ -1,0 +1,18 @@
+<div style="display: flex;">
+    <div class="containerFlexSections" *ngIf="sections && sections[sectionIndex]">
+        <div 
+            class="item" 
+            *ngFor="let week of sections[sectionIndex].weeks let i=index" 
+            [routerLink]="week.name"   [ngClass]="[i == 0 ? 'button-active' : 'button-standard']">
+            <button>{{ week.name }}</button>
+        </div>
+
+    </div>
+
+    <div class="containerFlexQuestions">
+        <router-outlet></router-outlet>    
+    </div>
+</div>
+
+
+

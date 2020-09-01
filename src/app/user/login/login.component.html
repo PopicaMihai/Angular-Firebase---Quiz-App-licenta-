@@ -1,0 +1,53 @@
+<body>
+  
+  <img  src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.15752-9/83192117_3084211994958247_4167194707014006045_n.png?_nc_cat=100&_nc_sid=b96e70&_nc_ohc=yBQTeGp7VfUAX8DCyes&_nc_ht=scontent-otp1-1.xx&oh=dfc20dd3de5aa7b25dc2b47fed994dad&oe=5F0AC82C" alt="quiz" >
+<div class="container">
+    <div class="col-12">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        
+        <!-- <div >
+          <h3>-Login-</h3>
+        </div> -->
+        
+        <div class="row" *ngIf="authError">
+          <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <label for="email">Email Adress</label>
+            <input ngModel #email="ngModel" name="email" type="email" class="form-control" id="email">
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <label for="password">Password</label>
+            <input ngModel #password="ngModel" name="password" type="password" class="form-control">
+          </div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
+
+          
+          
+        </div>
+  
+      </form>
+    </div>
+  </div>
+
+  <!-- <div class="col-12">
+    <a (click)="register()">Click here to register</a>
+  </div> -->
+
+  <div class="col-12">
+    <span routerLink="/forgot-password">Forgot Password?</span>
+  </div>
+
+  
+
+</body>

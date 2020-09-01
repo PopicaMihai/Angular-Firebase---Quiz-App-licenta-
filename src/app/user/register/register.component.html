@@ -1,0 +1,100 @@
+<body>
+  <div class="container-fluid">
+    <div class="col-12">
+      <h4>User Registration</h4>
+    </div>
+  
+    <div class="col-12">
+      <div class="row" *ngIf="authError">
+        <div class="col-12 alert alert-danger">
+          {{ authError?.message }}
+        </div>
+      </div>
+      <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
+        
+          <div class="row col-md-12 mb-2">
+            <div class="col-md-12 mb-2">
+              <label for="firstName">First name</label>
+              <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName">
+            </div>
+          </div>
+          <div class="row col-md-12 mb-2">
+            <div class="col-md-12 mb-2">
+              <label for="lastName">Last name</label>
+              <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName" value="">
+            </div>
+          </div>
+        
+        <div class="row col-md-12 mb-2">
+          <div class="col-md-12 mb-2">
+            <label for="email">Email</label>
+            <input ngModel #email="ngModel" name="email" type="email" class="form-control" email>
+          </div>
+        </div>
+        <div>
+          <div class="row col-md-12 mb-2">
+            <div class="col-md-12 mb-2">
+              <label for="password">Password</label>
+              <input ngModel #password="ngModel" name="password" type="password" class="form-control">
+            </div>
+          </div>
+          <div class="row col-md-12 mb-2">
+            <div class="col-md-12 mb-2">
+              <label>Confirm Password</label>
+              <input name="password" type="password" class="form-control">
+            </div>
+          </div>
+          <div class="row col-md-12 mb-2">
+            <div class="col-md-12 mb-2">
+              <label>Phone</label>
+              <input name="phone" ngModel #phone="ngModel" type="tel" name="phone" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group col-md-12 mb-2">
+            <label for="power">Section</label>
+            <select class="form-control" id="power" required ngModel #section="ngModel" name="section">
+              <option value="Automatica-Romana">Automatica-Ro</option>
+              <option value="Informatica-Romana">Informatica-Ro</option>
+              <option value="Automatica-Engleza">Automatica-En</option>
+              <option value="Informatica-Engleza">Informatica-En</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-12 mb-2">
+            <label for="group">Group</label>
+            <select class="form-control" *ngIf="section.value === ''"></select>
+            <select class="form-control" id="group" required ngModel #group="ngModel" name="group" *ngIf="section.value === 'Automatica-Romana'">
+              <option value="30141">30141</option>
+              <option value="30142">30142</option>
+              <option value="30143">30143</option>
+            </select>
+
+            <select class="form-control" id="group" required ngModel #group="ngModel" name="group" *ngIf="section.value === 'Informatica-Romana'">
+                <option value="30144">30144</option>
+                <option value="30145">30145</option>
+                <option value="30146">30146</option>
+            </select>
+
+            <select class="form-control" id="group" required ngModel #group="ngModel" name="group" *ngIf="section.value === 'Automatica-Engleza'">
+                <option value="30341">30341</option>
+                <option value="30342">30342</option>
+            </select>
+
+            <select class="form-control" id="group" required ngModel #group="ngModel" name="group" *ngIf="section.value === 'Informatica-Engleza'">
+                <option value="30343">30343</option>
+                <option value="30344">30344</option>
+            </select>
+          </div>
+          <div class="form-group row mb-2" style="margin-top: 30px;">
+            <div class="offset-md-2 col-md-4">
+              <button class="btn" type="submit">Inregistrare</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <span (click)="back()">Back to Login</span>
+  </div>
+</body>

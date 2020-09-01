@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<h2 class="text-center">Admin account</h2>
+ <h1>{{ ceva?.data().name }}</h1> 
+
+<div style="margin-top: 40px;">
+    
+        <div class="rightSide">
+            <label for="fname">New Admin Name</label>
+            <input autocomplete="off" type="text" id="fname" name="firstname" placeholder="New admin username" [(ngModel)]="modifyAdmin.name">
+        
+            <label for="lname">New Password</label>
+            <input type="password" id="lname" name="lastname" placeholder="New admin password" [(ngModel)]="modifyAdmin.password" >
+        
+            <label for="lname">Confirm Password</label>
+            <input type="password" id="lname" name="lastname" placeholder="Confirm new password" [(ngModel)]="confirmPassword">
+            
+            <a class="btn btn-primary" (click)="submitNew(modifyAdmin)"> Modifica </a>
+        </div>
+
+        <div class="leftSide">
+            <label for="fname">Admin Name</label>
+            <input autocomplete="off" type="text" id="fname" name="firstname" placeholder="Admin username" [(ngModel)]="oldAdmin">
+        
+            <label for="lname">Password</label>
+            <input type="password" id="lname" name="lastname" placeholder="Admin password" [(ngModel)]="oldPassword">
+        
+            <label for="lname">Confirm Password</label>
+            <input type="password" id="lname" name="lastname" placeholder="Confirm admin password" [(ngModel)]="oldConfirmPassword">
+            
+            <a class="btn btn-primary"(click)="verifyOld(oldAdmin, oldPassword, oldConfirmPassword)" > Check </a>
+        </div>
+    
+  </div>

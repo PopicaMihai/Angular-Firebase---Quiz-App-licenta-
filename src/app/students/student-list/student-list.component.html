@@ -1,0 +1,152 @@
+<div class="container-fluid">
+    <button type="button" class="btn btn-default" [ngClass]="{'btn-success': filters['Automatica-Romana']}" (click)="toggleFilter('Automatica-Romana')">AutomaticaRO</button>
+    <button type="button" class="btn btn-default" style="margin-left:10px" [ngClass]="{'btn-success': filters['Automatica-Engleza']}" (click)="toggleFilter('Automatica-Engleza')">AutomaticaEn</button>
+    <button type="button" class="btn btn-default" style="margin-left:10px" [ngClass]="{'btn-success': filters['Informatica-Romana']}" (click)="toggleFilter('Informatica-Romana')">InformaticaRO</button>
+    <button type="button" class="btn btn-default" style="margin-left:10px" [ngClass]="{'btn-success': filters['Informatica-Engleza']}" (click)="toggleFilter('Informatica-Engleza')">InformaticaEN</button>
+    <button class="btn btn-primary startButton" (click)="startExam()">Start Test</button>
+</div>
+
+<div class="form-group" style="margin-top:40px; margin-left:20px;">
+  <input type="text" class="form-control" placeholder="Seach By Family Name" style="width: 300px;" [(ngModel)]="searchTerm">
+  <input type="text" style="width: 60px; margin-top: 20px;" class="input-group-number"> % din Medie pentru Nota finală
+  <input type="text" style="width: 60px; margin-top: 20px; margin-left: 20px;" class="input-group-number"> Puncte per intrebare
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th> </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><input type="checkbox" (click)="checkAll()"> Select All</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        
+        
+      </tr>
+      <tr>
+        <th>#</th>
+        <th>Nume</th>
+        <th>Email</th>
+        <th>Grupa</th>
+        <th>Telefon</th>
+        <th>S1</th>
+        <th>S2</th>
+        <th>S3</th>
+        <th>S4</th>
+        <th>S5</th>
+        <th>S6</th>
+        <th>S7</th>
+        <th>S8</th>
+        <th>S9</th>
+        <th>S10</th>
+        <th>S11</th>
+        <th>S12</th>
+        <th>S13</th>
+        <th>S14</th>
+        <th>Medie</th>
+        <th>Online</th>
+        <th>Prezente</th>
+        <th>Puncte curs</th>
+        
+        <th style="padding-left:20px;">Modify</th>
+        
+        
+      </tr>
+      
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let el of studentss | studentFilter:searchTerm | studentPipe:filters; let i = index">
+        
+        <th>{{i+1}}</th>
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.firstName + " " + el.lastName}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control email" [(ngModel)]="el.firstName">
+            <input class="form-control email marginTop" [(ngModel)]="el.lastName">
+          </div>
+        </th>
+
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.email}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control email" [(ngModel)]="el.email">
+          </div>
+        </th> 
+        
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.group}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control group" [(ngModel)]="el.group">
+          </div>
+        </th>
+
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.phone}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control phone" [(ngModel)]="el.phone">
+          </div>
+        </th>
+
+        <th *ngFor="let week of el.weeks | keyvalue">
+          <div *ngIf="!(editState && currentIndex == i)">{{week.value}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control week" [(ngModel)]="week.value" (change)="updateWeek(el, week.value, week.key)">
+          </div>
+        </th>
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.medie}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control week" [(ngModel)]="el.medie">
+          </div>
+        </th>
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">
+            <i (click)="toggleOnline(el)"><span [ngClass]="{'dotOnline': el.online, 'dotOffline': !el.online}" ></span></i>
+          </div>
+          <div *ngIf="editState && currentIndex == i"> 
+            <input type="checkbox" class="form-control week" [(ngModel)]="el.online"> 
+          </div>
+        </th>
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.prezente}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control week" [(ngModel)]="el.prezente">
+          </div>
+        </th>
+        <th>
+          <div *ngIf="!(editState && currentIndex == i)">{{el.notaFinala}}</div>
+          <div *ngIf="editState && currentIndex == i">
+            <input class="form-control week" [(ngModel)]="el.notaFinala">
+          </div>
+        </th>
+        
+        <th>
+            <div>
+                <a *ngIf="!editState" class="btn btn-success"(click)="editStudent(el, i)">Edit</a>
+                <a *ngIf="editState" class="btn btn-primary"(click)="saveEditStudent(el)">Save</a>
+                <a class="btn btn-danger" (click)="deleteStudent(el)">Delete</a>
+            </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+

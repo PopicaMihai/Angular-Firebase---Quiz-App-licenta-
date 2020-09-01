@@ -1,0 +1,67 @@
+
+  <div *ngIf="user && !test && !showScore" class="container-fluid">
+      <h4 class="mt-4">Home Page</h4>
+      
+      <p>Logged in as: {{ user?.email }} - {{ user?.displayName }}</p>
+
+      <h2 >{{ newUser?.section }}</h2>
+
+      <div>
+          <div *ngFor="let i of questions">
+              <a class="btn btn-warning" (click)="currentWeek(i.key)">{{ i?.key }}</a>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf=" user && test && !showScore">
+    <!-- <div *ngFor="let question of questionTest let i=index"> -->
+      <h3 style="padding-top:20px;"> {{ questionTest[i]?.description }}</h3>
+      <br>
+      <div *ngIf='questionTest[i].image !== ""'>
+        <img [src]="questionTest[i].image">
+      </div>
+      
+      <br>
+      <div *ngFor="let answer of questionTest[i]?.answer let k = index" >
+        <div class="checkboxStyle checkbox">
+          <label class="round">
+            <input type="checkbox" [(ngModel)]="currentAnswer[k]"> {{ answer?.text }}
+          </label>
+        </div>
+      </div>
+      {{ buildResult() }}
+      <br>
+
+      <countdown class="coutdown" [config]="{ leftTime: questionTest[i]?.time, format: 's' }" (event)="handleCountdownEvent($event, i)"></countdown>
+
+      <button class="btn btn-primary nextButton" *ngIf="i < questionTest.length-1" (click)="nextQuestion()">Next</button>
+      <!-- <button class="btn btn-primary nextButton" *ngIf="i > 0" (click)="previousQuestion()">Previous</button> -->
+      <button class="btn btn-danger nextButton" *ngIf="i === questionTest.length-1" (click)="finishTest()">Submit</button>
+    
+    <!-- </div> -->
+  </div>
+
+  <div *ngIf="user && showScore" class="showExamResult">
+    <h4 style="text-align: center;">Ai reusit sa obtii:</h4>
+    <p class="textScore">{{ score }} / {{ questionTest.length }}</p>
+    <div>{{studentss[0]?.email}}</div>
+    <p style="text-align: center;">Vei fii delogat in 5 secunde de pe aplicatie!!!</p>
+  </div>
+
+  <div></div>
+
+  <div class="containter-fluid" style="height: 100vh;">
+    <img class="imgStart" *ngIf="!user"  src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.15752-9/83192117_3084211994958247_4167194707014006045_n.png?_nc_cat=100&_nc_sid=b96e70&_nc_ohc=yBQTeGp7VfUAX8DCyes&_nc_ht=scontent-otp1-1.xx&oh=dfc20dd3de5aa7b25dc2b47fed994dad&oe=5F0AC82C" alt="quiz" >
+    <button class="btn btn-primary mr-2" *ngIf="!user" (click)="register()">Register</button>
+    <button class="btn btn-primary" *ngIf="user && !test" (click)="logout()">Logout</button>
+    <button class="btn btn-primary" *ngIf="!user" (click)="login()">Login</button>
+    
+    <div *ngIf="!user" class="forgotPassword">
+      <span routerLink="/forgot-password">Forgot Password?</span>
+    </div>
+
+    <div *ngIf="!user" class="col-12">
+      <span routerLink="/auth">I'm The Lord</span>
+    </div>
+  </div>
+

@@ -1,0 +1,65 @@
+<body>
+    
+
+<section style="height: 100vh;">
+    <div  >
+    <div class="baslik">
+        <b style="font-size: 101px; text-align: center; margin-bottom: -21px; display: block;">
+            <img src="https://img.icons8.com/bubbles/2x/admin-settings-male.png" alt="Admin" style="margin-top: 8px;">
+        </b>
+        <!-- <span style="font-size: 19px; text-align: center; display: block; margin-bottom: 25px;">Admin Login Page</span> -->
+    </div>
+    <section>
+    <form >
+        <div class="container">
+            <div class="containerTop">Admin Login</div>
+            <hr style="border: 1px solid #ccc;">
+
+            <label for="username" style="font-size: 18px;">Name</label>
+            <input 
+                class="inputStyle" 
+                type="text" 
+                id="username"
+                style="font-size: 24px;"
+                required
+                [(ngModel)]="username"
+                name="username">
+
+            <label for="" style="margin-top: 20px; font-size: 18px;">Password</label>
+            <input 
+                class="inputStyle" 
+                type="password"  
+                required
+                [(ngModel)]="password"
+                name="password">
+
+            <a target="blank" class="btn btn-primary" (click)="loginAdmin()">
+                Login
+            </a>
+        </div>
+    </form>
+    </section><br>
+    </div>
+</section>
+
+</body>
+
+<!-- <div class="row">
+    <div class="col-xs-4">
+        <form>
+            <div class="form-group">
+                <label for="name">Admin</label>
+                <input type="text" id="email" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control">
+            </div>
+
+            <div>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div> -->
